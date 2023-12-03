@@ -14,7 +14,7 @@ public class Main {
 
         String [] names={"Peter", "Michell", "Jane", "Steve","Evgeni","Sam","Adam"};
         String [] places={"Sofia", "Plovdiv", "Varna", "Burgas","Ruse","Czech Republic","Germany","Gibraltar"};
-        String [] verbs={"eats", "holds", "sees", "plays with", "brings","features", "satisfies", "bids", "clutches", "begins"};
+        String [] verbsWithS={"eats", "holds", "sees", "plays with", "brings","features", "satisfies", "bids", "clutches", "begins"};
         String [] nouns={"stone", "cake", "apple", "laptop", "bike","permission",
                 "story", "committee", "championship", "insurance", "childhood", "guitar", "mixture",
                 "historian", "winner", "friendship", "event", "perspective", "singer", "basket", "feedback",
@@ -26,22 +26,24 @@ public class Main {
         String [] details={"near the river", "at home", "in the park"};
         String [] locationSides={"near","at","in","around","outside","underneath","along","within","via"
         ,"by","through"};
-
+        String [] verbs={"eat", "hold", "see", "play", "bring", "satisfy", "bid", "clutch", "begin","hang","ask","replace","admire","frighten"};
 
 
         Random random=new Random();
         System.out.println("Sentence Generator Starts...");
         while(true){
-            int i= random.nextInt(0,3);
+            int i= random.nextInt(0,4);
 
             switch (i) {
-                case 0 -> structure1(names, places, verbs, concreteNouns, adverbs, details);
-                case 1 -> structure2(verbs, concreteNouns, details,locationSides,places);
+                case 0 -> structure1(names, places, verbsWithS, concreteNouns, adverbs, details);
+                case 1 -> structure2(verbsWithS, concreteNouns, details,locationSides,places);
                 case 2 -> structure3(nouns,details,locationSides,names,places);
+                case 3 -> structure4(verbs,nouns);
             }
 
             System.out.println("Click [ENTER] to generate a new one.");
             Scanner sc=new Scanner(System.in);
+
             String cont=sc.nextLine();
             if(cont.equals(""))
                 continue;
@@ -220,8 +222,17 @@ public class Main {
                 }
             }
         }
+    }
+
+    public static void structure4(String []verbs,String[]nouns){
+        //I wish I could [verb] that [noun].
+        String randomNoun=getRandomWord(nouns);
+        String randomVerb=getRandomWord(verbs);
+
+        System.out.printf("I wish I could %s this %s.\n",randomVerb,randomNoun);
 
     }
+
 
     public static void main(String[] args) {
 
