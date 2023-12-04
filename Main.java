@@ -27,18 +27,19 @@ public class Main {
         String [] locationSides={"near","at","in","around","outside","underneath","along","within","via"
         ,"by","through"};
         String [] verbs={"eat", "hold", "see", "play", "bring", "satisfy", "bid", "clutch", "begin","hang","ask","replace","admire","frighten"};
-
+        String[] adjectives={"intelligent","painful","nauseating","naive","dark","tasteful","tall","pointless","classy","pathetic"};
 
         Random random=new Random();
         System.out.println("Sentence Generator Starts...");
         while(true){
-            int i= random.nextInt(0,4);
+            int i= random.nextInt(0,5);
 
             switch (i) {
                 case 0 -> structure1(names, places, verbsWithS, concreteNouns, adverbs, details);
                 case 1 -> structure2(verbsWithS, concreteNouns, details,locationSides,places);
                 case 2 -> structure3(nouns,details,locationSides,names,places);
                 case 3 -> structure4(verbs,nouns);
+                case 4 -> structure5(nouns,adjectives);
             }
 
             System.out.println("Click [ENTER] to generate a new one.");
@@ -229,8 +230,36 @@ public class Main {
         String randomNoun=getRandomWord(nouns);
         String randomVerb=getRandomWord(verbs);
 
-        System.out.printf("I wish I could %s this %s.\n",randomVerb,randomNoun);
+        System.out.printf("I wish I could %s this %s",randomVerb,randomNoun);
 
+        Random random=new Random();
+        int extraPart= random.nextInt(0,2);
+        if(extraPart==0){
+            System.out.println(".");
+        }else {
+            randomNoun = getRandomWord(nouns);
+            randomVerb = getRandomWord(verbs);
+
+            System.out.printf(" and %s the %s.\n", randomVerb, randomNoun);
+
+        }
+    }
+
+    public static void structure5(String []nouns,String[] adjectives){
+        //This [noun] seems [adjective]
+        String randomNoun=getRandomWord(nouns);
+        String randomAdjective=getRandomWord(adjectives);
+
+        Random random=new Random();
+        int pluralOrNot=random.nextInt(0,2);
+
+        if(pluralOrNot==0){
+            System.out.printf("This %s seems %s.\n",randomNoun,randomAdjective);
+        }else{
+            randomNoun=pluralize(randomNoun);
+
+            System.out.printf("This %s seem %s.\n",randomNoun,randomAdjective);
+        }
     }
 
 
